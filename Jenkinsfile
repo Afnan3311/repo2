@@ -54,40 +54,39 @@ pipeline {
             }
         }
 
-        
-stage('Update Manifest Repo') {
-    steps {
-        dir('manifest-workspace') {
-            git branch: "${MANIFEST_BRANCH}",
-                credentialsId: "${GIT_CREDENTIALS_ID}",
-                url: "${MANIFEST_REPO}"
+        stage('Update Manifest Repo') {
+            steps {
+                dir('manifest-workspace') {
+                    git branch: "${MANIFEST_BRANCH}",
+                        credentialsId: "${GIT_CREDENTIALS_ID}",
+                        url: "${MANIFEST_REPO}"
 
-            withCredentials([usernamePassword(
-                credentialsId: "${GIT_CREDENTIALS_ID}",
-                usernameVariable: 'GH_USER',
-                passwordVariable: 'GH_TOKEN'
-            )]) {
-                sh """
-                    git remote set-url origin https://\${GH_USER}:\${GH_TOKEN}@github.com/Afnan3311/repo2.git
+                    withCredentials([usernamePassword(
+                        credentialsId: "${GIT_CREDENTIALS_ID}",
+                        usernameVariable: 'GH_USER',
+                        passwordVariable: 'GH_TOKEN'
+                    )]) {
+                        sh """
+                            git remote set-url origin https://\${GH_USER}:\${GH_TOKEN}@github.com/Afnan3311/repo2.git
 
-                    git pull --rebase origin ${MANIFEST_BRANCH}
+                            git pull --rebase origin ${MANIFEST_BRANCH}
 
-                    sed -i '/name: repo2/{n;s|image:.*|image: ${DOCKER_IMAGE}:${env.BUILD_NUMBER}|}' manifests/deployment.yaml
+                            sed -i '/name: repo2/{n;s|image:.*|image: ${DOCKER_IMAGE}:${env.BUILD_NUMBER}|}' manifests/deployment.yaml
 
-                    git config user.name "Afnan3311"
-                    git config user.email "mohdafnan9617@gmail.com"
+                            git config user.name "Afnan3311"
+                            git config user.email "mohdafnan9617@gmail.com"
 
-                    git add manifests/deployment.yaml
+                            git add manifests/deployment.yaml
 
-                    git commit -m "chore(manifest): update repo2 image tag to ${env.BUILD_NUMBER} [skip ci]"
+                            git commit -m "chore(manifest): update repo2 image tag to ${env.BUILD_NUMBER} [skip ci]"
 
-                    git push origin ${MANIFEST_BRANCH}
-                """
+                            git push origin ${MANIFEST_BRANCH}
+                        """
+                    }
+                }
             }
         }
     }
-}
-
 
     post {
         success {
