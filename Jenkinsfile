@@ -71,7 +71,7 @@ pipeline {
 
                             git pull --rebase origin ${MANIFEST_BRANCH}
 
-                            sed -i '/name: repo2/{n;s|image:.*|image: ${DOCKER_IMAGE}:${env.BUILD_NUMBER}|}' manifests/deployment.yaml
+                            sed -i '/name: repo2/{n;s|image:.*|image: ${DOCKER_IMAGE}:${env.BUILD_NUMBER}|}' manifests/deployement.yaml
 
                             git config user.name "Afnan3311"
                             git config user.email "mohdafnan9617@gmail.com"
