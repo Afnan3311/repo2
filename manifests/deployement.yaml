@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: repo2
-          image: afnan2004/repo2:latest
+          image: afnan2004/repo2:6
           imagePullPolicy: Always
           ports:
             - containerPort: 80
