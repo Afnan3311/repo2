@@ -3,10 +3,10 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: repo2-deployment
+  name: aws-dashboard-deployment
   namespace: production
   labels:
-    app: repo2
+    app: aws-dashboard
     tier: frontend
 
 spec:
@@ -14,7 +14,7 @@ spec:
 
   selector:
     matchLabels:
-      app: repo2
+      app: aws-dashboard
 
   strategy:
     type: RollingUpdate
@@ -25,13 +25,13 @@ spec:
   template:
     metadata:
       labels:
-        app: repo2
+        app: aws-dashboard
         tier: frontend
 
     spec:
       containers:
-        - name: repo2
-          image: afnan2004/repo2:6
+        - name: aws-dashboard
+          image: afnan2004/aws-dashboard:latest
           imagePullPolicy: Always
 
           ports:
@@ -61,4 +61,5 @@ spec:
             periodSeconds: 10
 
       restartPolicy: Always
+
 
