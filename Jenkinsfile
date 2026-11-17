@@ -11,7 +11,7 @@ pipeline {
         GIT_CREDENTIALS_ID    = 'github-cred'
 
         // Replace with your new manifest repository URL
-        MANIFEST_REPO         = ''
+        MANIFEST_REPO         = 'https://github.com/Afnan3311/repo2.git'
         MANIFEST_BRANCH       = 'main'
     }
 
@@ -95,8 +95,8 @@ pipeline {
                             manifests/deployment.yml
 
                             # Configure Git
-                            git config user.name "manasavenu-2004"
-                            git config user.email "manasavenu88914@gmail.com"
+                            git config user.name "Afnan331"
+                            git config user.email "mohdafnan9617@gmail.com"
 
                             # Commit updated manifest
                             git add manifests/deployment.yml
