@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: aws-dashboard
-          image: afnan2004/aws-dashboard:latest
+          image:afnan2004/aws-dashboard:8
           imagePullPolicy: Always
 
           ports:
