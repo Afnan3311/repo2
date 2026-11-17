@@ -92,14 +92,14 @@ pipeline {
 
                             sed -i -E \
                             "s|(^[[:space:]]*image:).*|\\1${IMAGE_TAG}|" \
-                            manifests/deployment.yml
+                            manifests/deployment.yaml
 
                             # Configure Git
                             git config user.name "Afnan331"
                             git config user.email "mohdafnan9617@gmail.com"
 
                             # Commit updated manifest
-                            git add manifests/deployment.yml
+                            git add manifests/deployment.yaml
 
                             if ! git diff --cached --quiet; then
                                 git commit -m "Update AWS Dashboard image to ${BUILD_NUMBER} [skip ci]"
