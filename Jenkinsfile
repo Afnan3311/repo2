@@ -76,7 +76,7 @@ pipeline {
                             git config user.name "Afnan3311"
                             git config user.email "mohdafnan9617@gmail.com"
 
-                            git add manifests/deployment.yaml
+                            git add manifests/deployement.yaml
 
                             git commit -m "chore(manifest): update repo2 image tag to ${env.BUILD_NUMBER} [skip ci]"
 
